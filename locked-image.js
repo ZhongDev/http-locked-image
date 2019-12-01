@@ -19,7 +19,7 @@ var imageDataObject = JSON.parse(imageData)
 
 // Serve index page
 var indexHandler = function (req, res) {
-    res.render('pages/home', {titleExists, title})
+    res.render('pages/home')
 }
 
 // Websockets handler
