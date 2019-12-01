@@ -1,11 +1,6 @@
 // Obtain enviroment variables if configured
 require('dotenv').config()
 var port = process.env.PORT || 80
-var title = process.env.PORT || ''
-var titleExists = true
-if (title == '') {
-    titleExists = false
-}
 
 // Library imports
 var fs = require('fs')
