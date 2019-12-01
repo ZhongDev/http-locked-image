@@ -1,5 +1,3 @@
-var hasPasswordError = false;
-
 var uri = window.location.hostname + window.location.pathname
 var wss = "ws://"
 if(window.location.protocol == 'https:'){
@@ -44,6 +42,9 @@ function start(websocketServerLocation) {
 }
 
 function processForm(){
+    $("#password-error-wrapper").remove()
+    $("#password-input").attr("disabled", true);
+    $("#submit-button").attr("disabled", true);
     var passwordInput = document.getElementById("password-input").value
     ws.send(JSON.stringify({action: "authenticate", value: passwordInput}))
 }
@@ -61,10 +62,9 @@ function loadImage(base64){
 }
 
 function incorrectPassword(){
-    if(!hasPasswordError){
-        hasPasswordError = true;
-        $('#card-body').prepend('<div class="password-error-wrapper"><label class="password-error">The password was not recognised.</label></div>')
-    }
+    $('#card-body').prepend('<div class="password-error-wrapper" id="password-error-wrapper"><label class="password-error">The password was not recognised.</label></div>')
+    $("#password-input").attr("disabled", false);
+    $("#submit-button").attr("disabled", false);
     var div = document.getElementById('password-card');
     var interval = 100;
     var distance = 10;
@@ -78,5 +78,4 @@ function incorrectPassword(){
         }, interval);
     }                                                                                                          
     $(div).animate({ left: 0 }, interval);
-    console.log("o noes")
 }
