@@ -1,0 +1,31 @@
+.fullcover {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.6);
+    z-index: 10000;
+}
+
+#password-form {
+    padding: 2rem;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.password-error {
+    padding: 1rem;
+    color: #fff;
+    line-height: 100%;
+    margin: 0px;
+}
+
+.password-error-wrapper {
+    border-radius: .5rem;
+    background-color: #B00020;
+    display: inline-block;
+}

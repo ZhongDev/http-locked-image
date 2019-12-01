@@ -10,3 +10,6 @@ Image data needs to be saved into a json file in base64, so that it can be trans
 }
 ```
 The file should be saved in the same folder as `locked-image.js` as `imageData.json`
+
+## Credits
+* [Creative Tim](https://github.com/creativetimofficial) - For [material-dashboard](https://github.com/creativetimofficial/material-dashboard)

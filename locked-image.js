@@ -10,8 +10,8 @@ if (title == '') {
 // Library imports
 var fs = require('fs')
 var path = require('path')                                  
-var express = require('express')\
-var rateLimit = require('ws-rate-limit')('60s', 600)\
+var express = require('express')
+var rateLimit = require('ws-rate-limit')('60s', 600)
 
 // Configure express.js
 var app = express()
@@ -31,10 +31,26 @@ var indexHandler = function (req, res) {
 var indexWsHandler = function (ws, req) {
     rateLimit(ws)
     ws.on('message', function (message){
-        ws.send(200)
+        try {
+            var inputObj = JSON.parse(message)
+            switch (inputObj.action){
+                case "authenticate":
+                        if(inputObj.value in imageDataObject){
+                            ws.send(JSON.stringify({action:"load-image", value: imageDataObject[inputObj.value]}))
+                        }else{
+                            ws.send(401)
+                        }
+                    break
+                default:
+                    ws.send(404)
+            }
+        }
+        catch(err){
+            console.error(err)
+        }
     })
     ws.on('limited', function(){
-        ws.send(500)
+        ws.send(401)
     })
 }
 
