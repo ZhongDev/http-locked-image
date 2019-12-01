@@ -3,6 +3,7 @@ require('dotenv').config()
 var port = process.env.PORT || 80
 
 // Library imports
+var fs = require('fs')
 var path = require('path')                                  
 var express = require('express')\
 var rateLimit = require('ws-rate-limit')('60s', 600)\
@@ -12,6 +13,9 @@ var app = express()
 var expressWs = require('express-ws')(app)
 app.set('view engine', 'ejs')
 
+// Read and parse image JSON object
+var imageData = fs.readFileSync('imageData.json')
+var imageDataObject = JSON.parse(imageData)
 
 // Serve index page
 var indexHandler = function (req, res) {
