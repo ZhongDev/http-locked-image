@@ -1,6 +1,11 @@
 // Obtain enviroment variables if configured
 require('dotenv').config()
 var port = process.env.PORT || 80
+var title = process.env.PORT || ''
+var titleExists = true
+if (title == '') {
+    titleExists = false
+}
 
 // Library imports
 var fs = require('fs')
@@ -19,7 +24,7 @@ var imageDataObject = JSON.parse(imageData)
 
 // Serve index page
 var indexHandler = function (req, res) {
-    res.render('pages/home')
+    res.render('pages/home', {titleExists, title})
 }
 
 // Websockets handler
